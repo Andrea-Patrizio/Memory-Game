@@ -1,0 +1,283 @@
+/* 
+Project 2: Matching Game
+Author: Andrea P. Patella
+Udacity Nanodegree Program
+Front-end Developer
+Cascade Style Sheet
+*/
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png');
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 36px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/* Animations */
+
+@keyframes match {
+    0% {transform:scale(1.2,1)}
+    12.5% {transform:scale(1,1.2)}
+    25% {transform:scale(1.2,1)}
+    37.5% {transform:scale(1,1.2)}
+    50% {transform:scale(1.2,1)}
+    62.5% {transform:scale(1.2,1)}
+    75% {transform:scale(1,1.2)}
+    87.5% {transform:scale(1.2,1)}
+    100% {transform:scale(1,1)}
+}
+
+@keyframes nomatch {
+    0% {transform:translateX(-5px)}
+    12.5% {transform:translateX(5px)}
+    25% {transform:translateX(-5px)}
+    37.5% {transform:translateX(5px)}
+    50% {transform:translateX(-5px)}
+    62.5% {transform:translateX(5px)}
+    75% {transform:translateX(-5px)}
+    87.5% {transform:translateX(5px)}
+    100% {transform:translateX(0)}
+}
+
+/* Styles for the deck of cards */
+
+#deck {
+    width: 760px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 30px;
+    border-radius: 0;
+    box-shadow: 8px 8px 25px 0 rgba(46, 61, 73, 0.45);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+#deck .card {    
+    background-color: #3c4d5b;    
+    color: #3c4d5b;
+    border-radius: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s linear;
+    box-shadow: -1px -1px 0 rgba(255, 255, 255, 0.65) inset,
+        1px 1px 0 rgba(0,0,0,0.45) inset;
+}
+
+.grid20 .card {
+    font-size: 42px;
+    height: 120px;
+    width: 17%;
+    margin: 10px 1.5%;
+}
+
+.grid30 .card {
+    font-size: 36px;
+    height: 100px;
+    width: 14%;
+    margin: 8px 1.3%;
+}
+
+.grid42 .card {
+    font-size: 30px;
+    height: 85px;
+    width: 12%;
+    margin: 8px 1.1%;
+}
+
+#deck .card.show {
+    color: #fff;
+    background: #02b3e4;
+    cursor: default;
+}
+
+#deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    animation: match .5s ease-in-out .2s;
+}
+
+#deck .card.nomatch {
+    cursor: default;
+    color: #fff;
+    background: #f00;
+    animation: nomatch .5s ease-in-out .2s;
+}
+
+/* Styles for the Top Panel */
+
+#top-panel {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 750px;
+    margin-bottom: 20px;
+}
+
+#top-panel .option {
+    font-size: 18px;
+    align-content: space-between;
+    width: 50%;
+}
+
+.option span {
+    font-weight: bold;
+}
+
+.stars,
+.starsF {
+    margin: 0;
+    padding: 0;
+}
+
+.stars {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.stars li,
+.starsF li {
+    list-style: none;
+    display: inline-block;
+}
+
+.starsF {
+    font-size: 30px;
+    margin: 20px 0;
+}
+
+.painted {
+    color: #FF0000;
+}
+
+#top-panel .option.levels {
+    text-align: left;
+    width: 80%;
+}
+
+#top-panel .option.reset {
+    text-align: right;
+    width: 20%;
+}
+
+#difficulty {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 20px;
+    display: inline-block;
+}
+
+#difficulty li {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #02b3e4;
+    border: 1px solid #02b3e4;
+    color: #fff;
+    cursor: pointer;
+}
+
+#difficulty li:hover, .restart:hover {
+    background-color: #fff;
+    color: #02b3e4;
+}
+
+.restart {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #02b3e4;
+    color: #fff;
+    border: 1px solid #02b3e4;
+    cursor: pointer;
+}
+
+/* End game window */
+
+#modal {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 98;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);    
+}
+
+#modal.on {
+    visibility: visible;
+}
+
+.content {
+    width: 50%;
+    background-color: #fff;
+    min-height: 300px;
+    margin: 0 auto;
+    top: 50%;
+    position: relative;
+    transform: translateY(-47%);
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 0 25px rgba(0,0,0,.35);
+    opacity: 0;
+    transition: all .3s;
+}
+
+#modal.on .content {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+#modal .stars {
+    margin: 1em 0;
+}
+
+#modal .stars li {
+    font-size: 30px;
+}
+
+button {
+    background-color: #02b3e4;
+    color: #fff;
+    padding: .6em 1em;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.satan {
+    width: 70%;
+    height: auto;
+    margin:20px 0 0 0;
+}

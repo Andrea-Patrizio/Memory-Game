@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<title>Matching Game</title>
+	<meta name="description" content="">
+	<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<link rel="stylesheet" href="css/app.css">
+    </head>
+    <body>
+
+	<div class="container">
+	    <header>
+		<h1>Matching Game</h1>
+	    </header>
+	    <section id="top-panel">	
+		<div class="option">
+		    Moves: <span class="moves">0</span> | Matches: <span class="matches">0/0</span>
+		</div>
+		<div class="option">
+		    Time: <span id="seconds">000</span> seconds
+		    <ul class="stars">
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star"></i></li>
+		    </ul>
+		</div>
+	    </section>
+	    <section id="top-panel">
+		<div class="option levels">
+		    Difficulty level: 
+		    <ul id="difficulty">
+			<li class="level" data-level="0">Easy</li>
+			<li class="level" data-level="1">Medium</li>
+			<li class="level" data-level="2">Hard</li>
+		    </ul>
+		</div>
+		<div class="option reset">
+		    <div class="restart">
+			<i class="fa fa-repeat"></i>
+		    </div>
+		</div>
+	    </section>
+	    <ul id="deck"></ul>
+	</div>
+	<div id="modal">
+	    <div class="content">
+		<h1 id="title"></h1>
+		<p id="rating"></p>
+		<ul class="starsF"></ul>
+		<button type="button" class="restart">Restart</button>
+	    </div>
+	</div>
+
+	<script src="js/app.js"></script>
+    </body>
+</html>
